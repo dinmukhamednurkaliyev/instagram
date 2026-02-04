@@ -1,0 +1,56 @@
+name: "Maintenance"
+description: "Refactoring, CI/CD, testing, or documentation tasks"
+labels: ["type/chore"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🏗 Technical Task / Maintenance
+        Please provide details about the internal work or improvements needed.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: "Task Category"
+      description: "Select the type of technical work"
+      options:
+        - "Refactoring (refactor)"
+        - "CI/CD & Build (build/ci)"
+        - "Testing (test) 🧪"
+        - "Documentation (docs) 📝"
+        - "Performance (perf)"
+        - "Styling (style)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "What exactly needs to be done?"
+      placeholder: "e.g., Add unit tests for AuthBloc or update API documentation."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: definition_of_done
+    attributes:
+      label: "Definition of Done"
+      description: "Checklist for completing this task"
+      options:
+        - label: "Code follows project architecture"
+        - label: "Unit or Integration tests added/updated"
+        - label: "Documentation updated"
+        - label: "Self-review completed"
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority"
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true

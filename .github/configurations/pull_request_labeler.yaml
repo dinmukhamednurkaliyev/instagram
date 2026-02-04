@@ -1,0 +1,49 @@
+area/flutter:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.dart"
+          - "pubspec.yaml"
+          - "pubspec.lock"
+          - "assets/**"
+
+area/android:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "android/**"
+
+area/ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+          - "codecov.yml"
+
+area/docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "LICENSE"
+
+type/feature:
+  - head-branch: ["^feature/", "^feat/"]
+
+type/bug:
+  - head-branch: ["^fix/", "^bugfix/", "^hotfix/"]
+
+type/chore:
+  - head-branch: ["^chore/", "^ci/", "^dependabot/"]
+
+type/refactor:
+  - head-branch: ["^refactor/"]
+
+type/test:
+  - head-branch: ["^test/", "^tests/"]
+  - changed-files:
+      - any-glob-to-any-file:
+          - "test/**"
+          - "integration_test/**"
+
+dependencies:
+  - head-branch: ["^dependabot/"]
+  - changed-files:
+      - any-glob-to-any-file:
+          - "pubspec.lock"

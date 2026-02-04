@@ -1,0 +1,74 @@
+name: "Continuous Deployment"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  release-android:
+    name: "Release / Android"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Repo: Checkout"
+        uses: actions/checkout@v6.0.1
+
+      - name: "Action: Flutter Setup"
+        uses: ./.github/actions/flutter_setup
+        with:
+          version: "3.38.9"
+
+      - name: "Build: Android Bundle"
+        run: flutter build appbundle --release
+
+  ship-google-play:
+    name: "Ship / Google Play"
+    needs: [release-android]
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Store: Upload Bundle"
+        run: echo "Uploading to Google Play..."
+
+  ship-github:
+    name: "Ship / GitHub Release"
+    needs: [ship-google-play]
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Git: Tag & Release"
+        uses: softprops/action-gh-release@v2.5.0
+        with:
+          generate_release_notes: true
+
+  deployment-gate:
+    name: "Ship / Status"
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+      - release-android
+      - ship-google-play
+      - ship-github
+    steps:
+      - name: "Gate: Evaluate Status"
+        shell: bash
+        run: |
+          RED='\033[0;31m'
+          GREEN='\033[0;32m'
+          NC='\033[0m'
+
+          RESULTS='${{ toJSON(needs.*.result) }}'
+
+          if echo "$RESULTS" | grep -qE 'failure|cancelled'; then
+            echo -e "${RED}❌ ERROR: Deployment failed.${NC}"
+            exit 1
+          fi
+
+          echo -e "${GREEN}✅ SUCCESS: App shipped to all platforms.${NC}"

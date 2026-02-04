@@ -1,7 +1,10 @@
 {
   "version": "0.2",
-  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-  "dictionaries": ["vgv_allowed", "vgv_forbidden"],
+  "language": "en",
+  "dictionaries": [
+    "vgv_allowed",
+    "vgv_forbidden"
+  ],
   "dictionaryDefinitions": [
     {
       "name": "vgv_allowed",
@@ -14,12 +17,16 @@
       "description": "Forbidden VGV Spellings"
     }
   ],
-  "useGitignore": true,
   "words": [
-    "Contador",
-    "localizable",
-    "mostrado",
-    "página",
-    "Texto"
+    "flutter",
+    "dart",
+    "appbundle",
+    "keyhole",
+    "linter"
+  ],
+  "ignorePaths": [
+    "*.lock",
+    "dist/**",
+    ".git/**"
   ]
 }

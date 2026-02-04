@@ -1,0 +1,38 @@
+name: "Action: Flutter Setup"
+
+inputs:
+  version:
+    description: "Flutter version to use"
+    required: true
+    default: 3.38.9
+
+runs:
+  using: composite
+  steps:
+    - name: "Flutter: Install"
+      uses: softprops/action-gh-release@v2.5.0
+      with:
+        version: ${{ inputs.version }}
+        channel: stable
+        cache: true
+
+    - name: "Pub: Cache Dependencies"
+      uses: actions/cache@v5.0.3
+      with:
+        path: |
+          ${{ env.FLUTTER_HOME }}/.pub-cache
+          ~/.pub-cache
+        key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pub-
+
+    - name: "Pub: Get Packages"
+      shell: bash
+      run: |
+        echo "::group::Get Packages"
+        flutter pub get
+        echo "::endgroup::"
+
+    - name: "Pub: Build Runner"
+      shell: bash
+      run: flutter pub run build_runner build --delete-conflicting-output
