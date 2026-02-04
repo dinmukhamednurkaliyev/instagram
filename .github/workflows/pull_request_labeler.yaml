@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   run:
-    name: "Triage"
+    name: "Labeler: Run"
     runs-on: ubuntu-latest
     steps:
       - name: "Repository: Checkout"

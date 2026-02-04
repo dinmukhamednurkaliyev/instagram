@@ -1,0 +1,32 @@
+name-template: "v$RESOLVED_VERSION "
+tag-template: "v$RESOLVED_VERSION"
+categories:
+  - title: "New Features"
+    labels:
+      - "type/feature"
+      - "semver/minor"
+  - title: "Bug Fixes"
+    labels:
+      - "type/bug"
+      - "semver/patch"
+  - title: "Maintenance"
+    labels:
+      - "type/chore"
+      - "area/ci"
+version-resolver:
+  major:
+    labels:
+      - "semver/major"
+  minor:
+    labels:
+      - "type/feature"
+      - "semver/minor"
+  patch:
+    labels:
+      - "type/bug"
+      - "type/chore"
+      - "semver/patch"
+  default: patch
+template: |
+  ## Changes
+  $CHANGES

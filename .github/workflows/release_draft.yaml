@@ -1,0 +1,26 @@
+name: "Release Drafter"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  run:
+    name: "Release Drafter: Run"
+    permissions:
+      contents: write
+      pull-requests: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Repository: Checkout"
+        uses: actions/checkout@v6.0.1
+
+      - name: "Release Drafter: Draft"
+        uses: release-drafter/release-drafter@v6.1.0
+        with:
+          config-name: .github/configurations/release_draft.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

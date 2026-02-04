@@ -49,6 +49,9 @@ jobs:
         with:
           tag_name: "v0.0.${{ github.run_number }}"
           name: "Early Build v0.0.${{ github.run_number }}"
+          files: |
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/bundle/release/app-release.aab
           draft: false
           prerelease: true
           generate_release_notes: true
