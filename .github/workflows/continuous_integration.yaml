@@ -10,11 +10,9 @@ concurrency:
 
 on:
   push:
-    branches:
-    - main
+    branches: [main]
   pull_request:
-    branches:
-    - main
+    branches: [main]
 
 jobs:
   verification-difference:
@@ -51,6 +49,7 @@ jobs:
         uses: ./.github/actions/flutter_setup
         with:
           version: 3.38.9
+          channel: stable
 
       - name: "Flutter: Format Check"
         run: dart format --set-exit-if-changed .
