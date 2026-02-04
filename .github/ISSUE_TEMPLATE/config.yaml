@@ -1,1 +1,8 @@
 blank_issues_enabled: false
+contact_links:
+  - name: "Community Discussions"
+    url: https://github.com/dinmukhamednurkaliyev/instagram/discussions
+    about: "Please use GitHub Discussions for questions, ideas, and general talk."
+  - name: "Documentation"
+    url: https://docs.yourproject.com
+    about: "Read the official documentation to find answers to common questions."
