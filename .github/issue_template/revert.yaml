@@ -1,22 +1,22 @@
-name: Revert
-description: Revert a previous commit
+name: "Revert"
+description: "Revert a previous commit"
 title: "revert: "
 labels: [revert]
 body:
   - type: textarea
     id: description
     attributes:
-      label: Description
-      description: Provide a link to a PR/Commit that you are looking to revert and why.
+      label: "Description"
+      description: "Provide a link to a PR/Commit that you are looking to revert and why."
       placeholder: "Provide a description of and link to the commit that needs to be reverted."
     validations:
       required: true
   - type: textarea
     id: requirements
     attributes:
-      label: Requirements
+      label: "Requirements"
       description:
-        The list of requirements that need to be met in order to consider the ticket to be
+        "The list of requirements that need to be met in order to consider the ticket to be
         completed. Please be as explicit as possible.
       value: |
         - [ ] Change has been reverted.
@@ -27,8 +27,8 @@ body:
   - type: textarea
     id: additional-context
     attributes:
-      label: Additional Context
+      label: "Additional Context"
       description:
-        Add any other context, including links/screenshots/video recordings/etc about the problem
-        here.
+        "Add any other context, including links/screenshots/video recordings/etc about the problem
+        here."
       placeholder: "Provide context here."
