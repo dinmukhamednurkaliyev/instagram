@@ -48,8 +48,8 @@ jobs:
       - name: "Action: Flutter Setup"
         uses: ./.github/actions/flutter_setup
         with:
-          version: 3.38.9
-          channel: stable
+          version: "3.38.9"
+          channel: "stable"
 
       - name: "Flutter: Format Check"
         run: dart format --set-exit-if-changed .

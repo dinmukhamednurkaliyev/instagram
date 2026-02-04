@@ -26,7 +26,7 @@ jobs:
         uses: ./.github/actions/flutter_setup
         with:
           version: "3.38.9"
-          channel: stable
+          channel: "stable"
 
       - name: "Build: Android Bundle"
         run: flutter build appbundle --release
@@ -48,6 +48,9 @@ jobs:
         uses: softprops/action-gh-release@v2.5.0
         with:
           generate_release_notes: true
+          tag_name: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deployment-gate:
     name: "Ship / Status"
