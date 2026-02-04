@@ -2,11 +2,11 @@ name: "Action: Flutter Setup"
 
 inputs:
   version:
-    description: 'Flutter version'
+    description: "Flutter version"
     required: true
   channel:
-    description: 'Flutter channel'
-    default: 'stable'
+    description: "Flutter channel"
+    default: "stable"
 
 runs:
   using: composite
