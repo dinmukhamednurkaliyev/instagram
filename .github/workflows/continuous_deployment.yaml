@@ -43,13 +43,16 @@ jobs:
     name: "Ship / GitHub Release"
     needs: [ship-google-play]
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
     steps:
+      - name: "Repo: Checkout"
+        uses: actions/checkout@v6.0.1
+
       - name: "Git: Tag & Release"
         uses: softprops/action-gh-release@v2.5.0
         with:
-          tag_name: "v0.0.${{ github.run_number }}"
-          name: "Early Build v0.0.${{ github.run_number }}"
+          tag_name: ${{ github.ref_name || format('v0.0.{0}', github.run_number) }}
+          name: "Release ${{ github.ref_name || format('v0.0.{0}', github.run_number) }}"
           files: |
             build/app/outputs/flutter-apk/app-release.apk
             build/app/outputs/bundle/release/app-release.aab
@@ -57,7 +60,7 @@ jobs:
           prerelease: true
           generate_release_notes: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }
 
   deployment-gate:
     name: "Ship / Status"
