@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Repo: Checkout"
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: "Action: Flutter Setup"
         uses: ./.github/actions/flutter_setup
@@ -46,7 +46,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
     steps:
       - name: "Repo: Checkout"
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: "Git: Tag & Release"
         uses: softprops/action-gh-release@v2.5.0
