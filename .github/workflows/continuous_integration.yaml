@@ -23,7 +23,7 @@ jobs:
       flutter: ${{ steps.filter.outputs.flutter }}
     steps:
       - name: "Repository: Checkout"
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: "Verification: Check Flutter"
         id: filter
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Repository: Checkout"
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: "Action: Flutter Setup"
         uses: ./.github/actions/flutter_setup
@@ -91,7 +91,7 @@ jobs:
     if: ${{ needs.verification-difference.outputs.spell == 'success' }}
     steps:
       - name: "Repository: Checkout"
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: "Spell Check: Verify Repository"
         uses: streetsidesoftware/cspell-action@v8.2.0

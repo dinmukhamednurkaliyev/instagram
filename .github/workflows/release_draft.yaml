@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Repository: Checkout"
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: "Release Drafter: Draft"
         uses: release-drafter/release-drafter@v6.1.0
